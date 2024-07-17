@@ -38,7 +38,9 @@ def get_folder_name(character):
     elif character == '$':
         return 'DollarSymbol'
     elif character.isalnum():
-        return 'Symbol'
+        return 'Symbols'
+    elif character == "!":
+        return 'Symbols'
     else:
         return 'Others'
 
@@ -48,12 +50,12 @@ def check_string_in_zip(zip_path, search_string):
         return False
 
     folder_to_check = get_folder_name(search_string[0])
-
     try:
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             for file_name in zip_ref.namelist():
                 # Check if the file is in the correct folder
-                if file_name.lower().startswith(folder_to_check):
+                #if file_name.lower().startswith(folder_to_check):
+                if file_name.lower() == f"{folder_to_check}.txt/{folder_to_check}.txt".lower():
                     # Extract just the filename from the full path
                     filename = os.path.basename(file_name)
 
@@ -77,6 +79,10 @@ def check_string_in_zip(zip_path, search_string):
 
 def main():
     print("Password checker!")
+    #number_of_search_strings = int(input("How many password you would like to check? "))
+
+    search_strings = {}
+
     print("Please Provide your password it will be checked against RockMe2024! (dont worry localy)")
     search_string = getpass()
     large_zip_path = 'archive.zip'

@@ -79,7 +79,7 @@ def main():
     print("Password checker!")
     print("Please Provide your password it will be checked against RockMe2024! (dont worry localy)")
     search_string = getpass()
-    large_zip_path = 'data/archive.zip'
+    large_zip_path = 'archive.zip'
 
     the_process = ThreadWithReturnValue(name='password_search',target=check_string_in_zip, args=(large_zip_path, search_string))
 
